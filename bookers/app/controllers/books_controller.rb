@@ -4,11 +4,11 @@ class BooksController < ApplicationController
   end
 
   def index
-    @book = Book.all
+    @books = Book.all
   end
 
   def new
-   @book = Book.new
+    @book = Book.new
   end
 
   def create
@@ -16,7 +16,7 @@ class BooksController < ApplicationController
     book.save
     redirect_to '/index'
   end
-
+  
   def show
   end
 
@@ -31,3 +31,4 @@ class BooksController < ApplicationController
   end
 
 end
+

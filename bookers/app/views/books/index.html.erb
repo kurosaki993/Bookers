@@ -1,9 +1,16 @@
 <h1>Books</h1>
+<% @books.each do |book| %>
+  <h5>title</h5>
+  <span><%= book.title %></span>
+  <h5>body</h5>
+  <span><%= book.body %></span>
+<% end %>
 
-<%= form_with model:@book, url:'/books', local:true do |f| %>
-  <h4>タイトル</h4>
+<%= form_with model:Book.new, url:'/books', local:true do |f| %>
+
+  <h4>title</h4>
   <%= f.text_field :title %>
-  <h4>本文</h4>
+  <h4>Body</h4>
   <%= f.text_area :body %>
   <%= f.submit '新規投稿' %>
 <% end %>
