@@ -1,10 +1,16 @@
 <h1>Books</h1>
 <% @books.each do |book| %>
   <h5>title</h5>
-  <span><%= link_to book.title, book_path(book.id) %></span>
+  <span><%= book.title %></span>
   <h5>body</h5>
   <span><%= book.body %></span>
+  <p>
+    <%= link_to "show", book_path(book.id) %>
+    <%= link_to "edit", edit_book_path(book.id) %>
+    <%= link_to "destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  </p>  
 <% end %>
+
 
 <%= form_with model:Book.new, url:'/books', local:true do |f| %>
 
