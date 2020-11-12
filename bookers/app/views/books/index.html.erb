@@ -1,12 +1,13 @@
 <h1>Books</h1>
 <% @books.each do |book| %>
   <h5>title</h5>
-  <span><%= book.title %></span>
+  <span><%= link_to book.title, book_path(book.id) %></span>
   <h5>body</h5>
   <span><%= book.body %></span>
 <% end %>
 
 <%= form_with model:Book.new, url:'/books', local:true do |f| %>
+
 
   <h4>title</h4>
   <%= f.text_field :title %>
