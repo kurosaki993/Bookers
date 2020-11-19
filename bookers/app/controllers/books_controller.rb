@@ -9,19 +9,7 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
   end
-
-  def create
-      @book = Book.new(book_params)
-      @book.save
-    if @book.id == nil
-      @books = Book.all
-      flash[:danger] = 'error'
-      render 'index'
-    else
-    redirect_to book_path(@book.id)
-    flash[:success] = 'successfully'
-    end
-  end
+  
   def create
      @book = Book.new(book_params)
     if @book.save
@@ -29,7 +17,6 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
       @books = Book.all
-      flash[:danger] = 'error'
       render 'index'
     end
   end
@@ -43,14 +30,13 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    if book.update(book_params)
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
     flash[:success] = 'successfully'
-    redirect_to book_path(book.id)
+    redirect_to book_path(@book.id)
     else
       @books = Book.all
-      flash[:danger] = 'error'
-      render :edit
+      render 'edit'
     end
   end
 

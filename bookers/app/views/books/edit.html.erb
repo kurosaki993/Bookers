@@ -1,11 +1,15 @@
-<%= form_with model:@book,  local:true do |f| %>
-<% if flash[:danger] %>
-<% end %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>本文</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Update Book' %>
-<% end %>
+  <%= form_with model:@book, local:true do |f| %>
+    <% if @book.errors.any? %>
+     <% @book.errors.full_messages.each do |message| %>
+     <p>error</p>
+     <%= message %>
+     <% end %>
+    <% end %>
+   <h4>タイトル</h4>
+   <%= f.text_field :title %>
+   <h4>本文</h4>
+   <%= f.text_area :body %>
+   <%= f.submit 'Update Book' %>
+  <% end %>
 <%= link_to "show", book_path %>
 <%= link_to "Back", '/books' %>
